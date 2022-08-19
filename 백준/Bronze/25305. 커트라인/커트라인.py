@@ -1,0 +1,7 @@
+A,B  = input().split()
+A = int(A)
+B = int(B)
+C = input().split()
+C = list(map(int,C))
+C.sort(reverse=True)
+print(C[B-1])
