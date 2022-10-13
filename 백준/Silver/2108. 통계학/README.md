@@ -37,3 +37,194 @@
 
 <p>넷째 줄에는 범위를 출력한다.</p>
 
+# 1트
+```
+n = int(input())
+
+first_list = []
+for i in range(n):
+  first_list.append(int(input()))
+first_list.sort()
+
+print(round(sum(first_list)/len(first_list)))
+
+import math
+
+mid = math.floor(len(first_list)/2)
+print(first_list[mid])
+
+from collections import Counter
+
+k = Counter(first_list)
+
+value_copy = list(map(int,k.values()))
+
+value_copy = set(value_copy)
+
+list_B = []
+
+if len(first_list) == 1:
+  print(first_list[0])
+elif len(value_copy) < len(k.values()):
+  for i in k.keys():
+    if k[i] == max(k.values()):
+      list_B.append(i)
+  del list_B[0]
+  print(list_B[0])
+elif len(value_copy) == len(k.values()):
+    for i in k.keys():
+      if k[i] == max(k.values()):
+        del k[i]
+        break
+    for i in k.keys():
+      if k[i] == max(k.values()):
+        print(i)
+
+if max(first_list) >0 and  min(first_list) >0:
+  print(max(first_list) - min(first_list))
+elif max(first_list) <0 and min(first_list) >0:
+  print(-(max(first_list)) - min(first_list))
+elif max(first_list) >0 and  min(first_list) <0:
+  print((max(first_list)) + min(first_list))
+elif max(first_list) <0 and  min(first_list) <0:
+  print(-(max(first_list)) + min(first_list))
+elif max(first_list) == 0:
+  print((max(first_list)) - min(first_list))
+elif min(first_list) == 0:
+  print((max(first_list)) + min(first_list))
+```
+너무 복잡하게 풀었다.
+
+# 2트
+```
+n = int(input())
+
+first_list = []
+for i in range(n):
+  first_list.append(int(input()))
+first_list.sort()
+
+print(round(sum(first_list)/len(first_list)))
+
+import math
+
+mid = math.floor(len(first_list)/2)
+print(first_list[mid])
+
+first_list = sorted(first_list)
+
+first_list_copy = first_list.copy()
+
+from collections import Counter
+
+k = Counter(first_list)
+if len(first_list) == 1:
+  print(first_list[0])
+elif max(first_list) == 1:
+  print(first_list[1])
+elif len(first_list)>=2:  
+  for i in k.keys():
+    if k[i] == max(k.values()):
+      first_list_copy.remove(i)
+      break
+  print(max(first_list_copy))
+
+final = max(first_list) - min(first_list)
+
+
+print(final)
+```
+최빈값에 대한 오류가 발생
+
+# 3트(딕션을 정렬하고 반복문으로 리스트를 만들기)
+```
+n = int(input())
+
+first_list = []
+for i in range(n):
+  first_list.append(int(input()))
+first_list.sort()
+
+print(round(sum(first_list)/len(first_list)))
+
+import math
+
+mid = math.floor(len(first_list)/2)
+print(first_list[mid])
+
+first_list = sorted(first_list)
+
+
+from collections import Counter
+
+
+k = Counter(first_list)
+
+
+if len(first_list) == 1:
+  print(first_list[0])
+
+elif max(k.values()) == 1:
+  print(first_list[1])
+
+elif max(k.values()) >= 2:
+  k1 = sorted(k.items(),reverse = True)
+  k1 = dict(k1)
+  new_list = []
+  for key,value in k1.items():
+    for i in range(value):
+      new_list.append(key)
+  print(new_list[1])
+
+final = max(first_list) - min(first_list)
+print(final)
+```
+이거 collections의 most_commom 함수를 몰라 좀 해맸다. 다음에는 이걸로 풀어야지
+
+# 4트(most_common)
+```
+import sys 
+from collections import Counter
+
+#main
+t = int(sys.stdin.readline())
+
+numbers = []
+for _ in range(t):
+    numbers.append(int(sys.stdin.readline()))
+    
+def mean(nums):
+    return round(sum(nums)/len(nums))
+
+def median(nums):
+    nums.sort()
+    mid = nums[len(nums)//2] # nums의 개수는 홀수
+    
+    return mid
+
+def mode(nums):
+    mode_dict = Counter(nums)
+    modes = mode_dict.most_common()    
+    
+    if len(nums) > 1 : 
+        if modes[0][1] == modes[1][1]:
+            mod = modes[1][0]
+        else : 
+            mod = modes[0][0]
+    else : 
+        mod = modes[0][0]
+
+    return mod
+        
+def scope(nums):
+    return max(nums) - min(nums)
+
+print(mean(numbers))
+print(median(numbers))
+print(mode(numbers))
+print(scope(numbers))
+```
+
+# 새롭게 알게된 사실
+1. 튜플을 k[0][1]이런 형식으로 출력이 가능하다.
+2. most_common으로 최빈값들의 갯수를 알 수 있다. 이게 튜플로 리턴됨. count와 함께 앞으로 유용하게 쓰일듯하다.
