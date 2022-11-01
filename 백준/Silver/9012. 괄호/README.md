@@ -24,3 +24,80 @@
 
  <p>출력은 표준 출력을 사용한다. 만일 입력 괄호 문자열이 올바른 괄호 문자열(VPS)이면 “YES”, 아니면 “NO”를 한 줄에 하나씩 차례대로 출력해야 한다. </p>
 
+
+
+# 1트
+```
+from collections import Counter
+
+A = int(input())
+
+for i in range(A):
+  n = input()
+  n = list(n)
+  k = Counter(n)
+  list_A = []
+  for key,value in k.items():
+    list_A.append(value)
+  if len(list_A) < 2:
+    print('NO')
+  if list_A[0] == list_A[1]:
+    print('YES')
+  else:
+    print('NO')
+```
+# 2트
+```
+A = int(input())
+
+left_list = []
+right_list = []
+
+for i in range(A):
+  n = input()
+  n = list(n)
+
+  for i in n:
+    if i == '(':
+      left_list.append(i)
+    else:
+      right_list.append(i)
+
+  if len(left_list) == len(right_list):
+    print('YES')
+    left_list.clear()
+    right_list.clear()
+  else:
+    print('NO')
+    left_list.clear()
+    right_list.clear()
+
+```
+# 3트
+```
+A = int(input())
+
+list_A = []
+list_C = []
+for i in range(A):
+  n = input()
+  n = list(n)
+
+  for i in n:
+    list_A.append(i)
+    if len(list_A) >=2 and list_A[len(list_A)-2] == '(' and list_A[len(list_A)-1] == ')':
+      list_A.remove(list_A[len(list_A)-2])
+      list_A.remove(list_A[len(list_A)-1])
+    else:
+      pass
+  if len(list_A) != 0:
+    list_C.append('NO')
+    list_A.clear()
+  else:
+    list_C.append('YES')
+    list_A.clear()
+
+for i in list_C:
+  print(i)
+```
+결국 출력을 잘못해서 틀린거였음.
