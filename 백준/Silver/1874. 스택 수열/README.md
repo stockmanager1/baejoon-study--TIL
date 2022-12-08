@@ -61,7 +61,7 @@ else:
     print(i)
 ```
 
-#2트
+# 2트
 
 ```
 import sys 
@@ -107,7 +107,7 @@ else:
     print(i)
 ```
 
-#3트
+# 3트
 ```
 n = 8
 
@@ -136,7 +136,7 @@ def recursion(list_A,list_B,list,balance):
     return
 ```
 
-#4트
+# 4트
 
 ```
 import sys 
