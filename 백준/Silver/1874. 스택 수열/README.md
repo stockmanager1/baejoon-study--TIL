@@ -24,3 +24,149 @@
 
  <p>입력된 수열을 만들기 위해 필요한 연산을 한 줄에 한 개씩 출력한다. push연산은 +로, pop 연산은 -로 표현하도록 한다. 불가능한 경우 NO를 출력한다.</p>
 
+
+# 1트
+
+```
+import sys
+
+
+
+n = int(sys.stdin.readline())
+balance_list = []
+for i in range(1,n+1):
+  balance_list.append(int(sys.stdin.readline()))
+result = []
+
+num_list =[]
+
+for i in range(1,n+1):
+  num_list.append(i)
+  result.append('+')
+  while True:
+    if len(num_list) == 0:
+      break
+    else:
+      pass
+    if max(num_list) == balance_list[0]:
+      num_list.remove(num_list[len(num_list)-1]) 
+      balance_list.remove(balance_list[0])
+      result.append('-')
+    else:
+      break
+if len(num_list) != 0:
+  print('No')
+else:
+  for i in result:
+    print(i)
+```
+
+#2트
+
+```
+import sys 
+
+n = int(sys.stdin.readline())
+
+
+list = []
+
+for i in range(1,n+1):
+  list.append(int(sys.stdin.readline()))
+
+balance = []
+
+list_A = []
+
+list_B = []
+
+def recursion(list_A,list_B,list,balance):
+  if len(balance) == n:
+    return
+  if len(list_A) == 0:
+    return
+  if list_A[-1] == list[0]:
+    balance.append(list[0])
+    list.remove(list[0])
+    list_A.remove(list_A[-1])
+    list_B.append('-')
+    return recursion(list_A,list_B,list,balance)
+  else:
+    return
+
+
+for i in range(1,n+1):
+  list_A.append(i)
+  list_B.append('+')
+  recursion(list_A,list_B,list,balance)
+  
+if len(list_A) > 1:
+  print('N0')
+else:
+  for i in list_B:
+    print(i)
+```
+
+#3트
+```
+n = 8
+
+list = [4,3,6,8,7,5,2,1]
+
+i = 0
+
+balance = []
+
+list_A = []
+
+list_B = []
+
+def recursion(list_A,list_B,list,balance):
+  if len(balance) == n:
+    return
+  if len(list_A) == 0:
+    return
+  if list_A[-1] == list[0]:
+    balance.append(list[0])
+    list.remove(list[0])
+    list_A.remove(list_A[-1])
+    list_B.append('-')
+    return recursion(list_A,list_B,list,balance)
+  else:
+    return
+```
+
+#4트
+
+```
+import sys 
+
+n = int(sys.stdin.readline())
+
+list_B = []
+
+for i in range(n):
+  list_B.append(int(sys.stdin.readline()))
+
+list_B_cp = list_B.copy()
+
+list_C = []
+list_A = []
+for i in range(1,n+1):
+  list_A.append(i)
+  list_C.append('+')
+  while True:
+    if len(list_A) == 0:
+      break
+    if list_A[-1] == list_B_cp[0]:
+      list_A.remove(list_A[-1])
+      list_B_cp.remove(list_B_cp[0])
+      list_C.append('-')
+    else:
+      break
+if len(list_B_cp) != 0:
+  print('NO')
+else:
+  for i in list_C:
+    print(i)
+```
