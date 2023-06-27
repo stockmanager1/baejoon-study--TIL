@@ -1,6 +1,3 @@
-import sys
-
-input = sys.stdin.readline
 n = int(input())
 list_A = input().split()
 list_A = list(map(int,list_A))
