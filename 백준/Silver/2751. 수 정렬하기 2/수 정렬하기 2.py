@@ -1,11 +1,12 @@
-import sys
-A = int(sys.stdin.readline())
-B = []
-for i in range(0,A):
-  C = int(sys.stdin.readline())
-  B.append(C)
+n = int(input())
 
-B = sorted(B)
+list_A = []
 
-for i in B:
+for i in range(n):
+  num = int(input())
+  list_A.append(num)
+
+list_A.sort()
+
+for i in list_A:
   print(i)
