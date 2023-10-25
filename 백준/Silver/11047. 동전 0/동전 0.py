@@ -1,21 +1,21 @@
-n, k = input().split()
-n = int(n)
-k = int(k)
-
-coin_list = []
+n, k = map(int, input().split())
+coin = []
 
 for i in range(n):
-  coin_list.append(input())
-  
-coin_list = list(map(int,coin_list))
+    num = int(input())
+    coin.append(num)
 
-coin_list_new = sorted(coin_list, reverse = True)
+coin.sort()
 
-count=[]
-for i in coin_list_new:
-  if k < i:
-    pass
-  elif k >= i:
-    count.append(k // i)
-    k = k % i
-print(sum(count))
+cnt = 0
+while True:
+    if k == 0:
+        break
+    else:
+        if k >= coin[-1]:
+            k = k - coin[-1]
+            cnt = cnt + 1
+        else:
+            coin.pop()
+
+print(cnt)
