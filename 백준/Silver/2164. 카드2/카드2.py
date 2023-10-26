@@ -1,24 +1,22 @@
 n = int(input())
+from collections import deque
 
-first_list = []
+card=deque([ ])
 
 for i in range(1,n+1):
-  first_list.append(i)
-  
-  
-import collections
-  
-dequeue_first_list = collections.deque(first_list)
+  card.append(i)
+cnt = 1
 
-
-for i in first_list:
-  if len(dequeue_first_list) == 1:
+while True:
+  if len(card) == 1:
+    print(card[0])
     break
   else:
-    dequeue_first_list.remove(dequeue_first_list[0])
-    dequeue_first_list.append(dequeue_first_list[0])
-    dequeue_first_list.remove(dequeue_first_list[0])
-    if len(dequeue_first_list) == 1:
-        break
-    
-print(dequeue_first_list[0])
+    if cnt %2 == 0:
+      num = card[0]
+      card.popleft()
+      card.append(num)
+      cnt = cnt + 1
+    else:
+      card.popleft()
+      cnt = cnt + 1
