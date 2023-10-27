@@ -1,12 +1,12 @@
-n = input()
-n = int(n)
-a = input().split()
-a = list(map(int,a))
-b = sorted(a)
+n = int(input())
 
-c = []
-d = []
-for i in b:
-  c.append(i)
-  d.append(sum(c))
-print(sum(d))
+list_A =list(map(int,input().split()))
+
+list_A.sort()
+
+dp = [0] * (n+1)
+dp[0] = list_A[0]
+for i in range(1,n):
+  dp[i] = dp[i-1] + list_A[i]
+
+print(sum(dp))
