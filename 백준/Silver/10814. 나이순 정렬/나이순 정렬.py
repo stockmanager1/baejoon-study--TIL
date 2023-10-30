@@ -1,8 +1,13 @@
 n = int(input())
-LIST=[]
-for i in range(n):
-  LIST.append(input().split())
 
-LIST.sort(key = lambda x:int(x[0]))
-for i in LIST:
+people = []
+
+for i in range(n):
+  a,m = input().split()
+  a = int(a)
+  people.append([a,m])
+
+people.sort(key=lambda x: (x[0]))
+
+for i in people:
   print(*i)
