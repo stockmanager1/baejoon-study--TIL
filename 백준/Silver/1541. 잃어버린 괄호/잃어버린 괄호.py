@@ -1,17 +1,10 @@
-n = input().split('-')
+list_A = input().split('-')
 
-list_A = []
+# 첫 번째 항 계산
+first_sum = sum(map(int, list_A[0].split('+')))
 
-for i in n:
-  k = i.split('+')
-  if len(k) == 1:
-    k = int(k[0])
-    list_A.append(k)
-  else:
-    k = list(map(int,k))
-    k = sum(k)
-    list_A.append(k)
-cnt = list_A[0]
-for i in range(1,len(list_A)):
-  cnt = cnt- list_A[i]
-print(cnt)
+# 첫 번째 항 이후의 모든 항 계산
+rest_sum = sum(sum(map(int, part.split('+'))) for part in list_A[1:])
+
+# 결과 출력
+print(first_sum - rest_sum)
